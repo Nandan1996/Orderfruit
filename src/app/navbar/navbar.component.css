@@ -1,3 +1,11 @@
 .dropdown-toggle{
     cursor: pointer;
 }
+.profile-image{
+    width: 40px;
+    height: 40px;
+}
+
+.img-circle{
+    border-radius: 50%;
+}
