@@ -17,7 +17,11 @@ export class AppComponent {
         const returnUrl = localStorage.getItem('returnUrl');
         if (returnUrl) {
           localStorage.removeItem('returnUrl');
-          this.router.navigateByUrl(returnUrl);
+          this.router.navigateByUrl(returnUrl).then(nav => {
+            if (!nav) {
+              this.router.navigateByUrl('/');
+            }
+          });
         }
       }
     });
