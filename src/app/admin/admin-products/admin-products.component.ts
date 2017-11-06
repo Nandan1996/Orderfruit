@@ -13,7 +13,6 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
 
   subscription: Subscription;
   products: Product[];
-  filteredProducts: Product[];
   tableResource: DataTableResource<Product>;
   items: Product[] = [];
   itemCount: number;
@@ -21,7 +20,7 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   constructor(private productService: ProductService) {
     this.subscription = this.productService.getAll()
       .subscribe(products => {
-        this.products = this.filteredProducts = products;
+        this.products = products;
         this.initializeDataTable(products);
       });
   }
@@ -41,13 +40,15 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
       .then(items => this.items = items);
   }
   filter(query: string) {
+    let filteredProducts;
     if (query) {
-      this.filteredProducts = this.products
+      filteredProducts = this.products
         .filter(product => product.title.toLowerCase()
                             .includes(query.toLowerCase()));
     }else {
-      this.filteredProducts = this.products;
+      filteredProducts = this.products;
     }
+    this.initializeDataTable(filteredProducts);
   }
   ngOnInit() {
   }
