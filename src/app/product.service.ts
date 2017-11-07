@@ -1,3 +1,5 @@
+import { Product } from './models/product';
+import { Observable } from 'rxjs/Observable';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
@@ -10,7 +12,7 @@ export class ProductService {
     return this.db.list('/products').push(product);
   }
 
-  getAll() {
+  getAll(): Observable<Product[]> {
     return this.db.list('/products')
     .snapshotChanges()
     .map(products => {
