@@ -11,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 export class NavbarComponent implements OnInit {
   appUser: AppUser;
   isCollapsed = false;
-  shoppingCartItemCount: number;
+  cart$;
   constructor(
     private auth: AuthService,
     private cartService: ShoppingCartService) {
@@ -19,11 +19,7 @@ export class NavbarComponent implements OnInit {
 
   async ngOnInit() {
     this.auth.appUser$.subscribe(appUser => this.appUser = appUser);
-    (await this.cartService.getCart()).subscribe(cart => {
-      this.shoppingCartItemCount = 0;
-      for (const productId in cart.items)
-        this.shoppingCartItemCount += cart.items[productId].quantity;
-    });
+    this.cart$ = await this.cartService.getCart();
   }
   logout() {
     this.auth.logout();
