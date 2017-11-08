@@ -31,11 +31,18 @@ export class ShoppingCartService {
     return result.key;
   }
 
-  async addToCart({key, ...ProductC}: Product) {
+  async addToCart(product: Product) {
+    this.updateItemQuantity(product, 1);
+  }
+
+  async removeFromCart(product: Product) {
+    this.updateItemQuantity(product, -1);
+  }
+  private async updateItemQuantity({key, ...ProductC}: Product, change: number) {
     const cartId = await this.getOrCreateCartId();
     const itemDb = this.getItem(cartId, key);
     itemDb.snapshotChanges().take(1).subscribe(({payload}) => {
-      itemDb.update({product: ProductC, quantity: (payload.val() && payload.val().quantity || 0) + 1});
+      itemDb.update({product: ProductC, quantity: (payload.val() && payload.val().quantity || 0) + change});
     });
   }
 }
