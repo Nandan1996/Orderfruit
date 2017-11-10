@@ -1,7 +1,8 @@
+import { ShoppingCartItem } from './models/shopping-cart-item';
 import { ShoppingCart } from './models/shopping-cart';
 import { Observable } from 'rxjs/Observable';
 import { Product } from './models/product';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/take';
 import 'rxjs/add/operator/map';
@@ -37,17 +38,22 @@ export class ShoppingCartService {
   }
 
   async addToCart(product: Product) {
-    this.updateItemQuantity(product, 1);
+    this.updateItem(product, 1);
   }
 
   async removeFromCart(product: Product) {
-    this.updateItemQuantity(product, -1);
+    this.updateItem(product, -1);
   }
-  private async updateItemQuantity({key, ...ProductC}: Product, change: number) {
+  private async updateItem({key, ...ProductC}: Product | ShoppingCartItem, change: number) {
     const cartId = await this.getOrCreateCartId();
     const itemDb = this.getItem(cartId, key);
-    itemDb.snapshotChanges().take(1).subscribe(({payload}) => {
-      itemDb.update({product: ProductC, quantity: (payload.val() && payload.val().quantity || 0) + change});
+    itemDb.valueChanges<ShoppingCartItem>().take(1).subscribe((item) => {
+      itemDb.update({
+        title: ProductC.title,
+        imageUrl: ProductC.imageUrl,
+        price: ProductC.price,
+        quantity: (item && item.quantity || 0) + change
+      });
     });
   }
 }

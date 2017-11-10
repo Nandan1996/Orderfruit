@@ -3,11 +3,13 @@ import { ShoppingCartItem } from './shopping-cart-item';
 
 export class ShoppingCart {
   items: ShoppingCartItem[] = [];
-  constructor(public itemsMap: { [productId: string]: ShoppingCartItem}) {
+  constructor(public itemsMap: { [productId: string]: ShoppingCartItem} = {}) {
     for (const productId in this.itemsMap) {
       if (this.itemsMap.hasOwnProperty(productId)) {
-        const item = this.itemsMap[productId];
-        this.items.push(new ShoppingCartItem(item.product, item.quantity));
+        const item = itemsMap[productId];
+        const x = new ShoppingCartItem();
+        Object.assign(x, item, { key: productId });
+        this.items.push(x);
       }
     }
   }
