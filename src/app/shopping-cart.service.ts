@@ -53,11 +53,13 @@ export class ShoppingCartService {
     const cartId = await this.getOrCreateCartId();
     const itemDb = this.getItem(cartId, key);
     itemDb.valueChanges<ShoppingCartItem>().take(1).subscribe((item) => {
-      itemDb.update({
+      const quantity = (item && item.quantity || 0) + change;
+      if (quantity === 0) itemDb.remove();
+      else itemDb.update({
         title: ProductC.title,
         imageUrl: ProductC.imageUrl,
         price: ProductC.price,
-        quantity: (item && item.quantity || 0) + change
+        quantity
       });
     });
   }
