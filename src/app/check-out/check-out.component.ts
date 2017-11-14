@@ -1,12 +1,8 @@
 import { Observable } from 'rxjs/Observable';
-import { Router } from '@angular/router';
-import { Order } from './../models/order';
-import { AuthService } from './../auth.service';
-import { OrderService } from './../order.service';
 import { Subscription } from 'rxjs/Subscription';
 import { ShoppingCart } from './../models/shopping-cart';
 import { ShoppingCartService } from './../shopping-cart.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'check-out',
