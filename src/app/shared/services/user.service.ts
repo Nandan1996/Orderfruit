@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs/Observable';
-import { AppUser } from './models/app-user';
+import { AppUser } from '../models/app-user';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import * as firebse from 'firebase';

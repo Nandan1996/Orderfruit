@@ -1,7 +1,7 @@
-import { ShoppingCartItem } from './models/shopping-cart-item';
-import { ShoppingCart } from './models/shopping-cart';
+import { ShoppingCartItem } from '../models/shopping-cart-item';
+import { ShoppingCart } from '../models/shopping-cart';
 import { Observable } from 'rxjs/Observable';
-import { Product } from './models/product';
+import { Product } from '../models/product';
 import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/take';

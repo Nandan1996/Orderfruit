@@ -1,4 +1,4 @@
-import { Product } from './models/product';
+import { Product } from '../models/product';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
