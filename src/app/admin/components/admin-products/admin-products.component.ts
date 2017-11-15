@@ -1,6 +1,6 @@
-import { Product } from '../../../shared/models/product';
+import { Product } from 'shared/models/product';
 import { Observable } from 'rxjs/Observable';
-import { ProductService } from '../../../shared/services/product.service';
+import { ProductService } from 'shared/services/product.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { DataTableResource } from 'angular-4-data-table';
@@ -10,7 +10,6 @@ import { DataTableResource } from 'angular-4-data-table';
   styleUrls: ['./admin-products.component.css']
 })
 export class AdminProductsComponent implements OnInit, OnDestroy {
-
   subscription: Subscription;
   products: Product[];
   tableResource: DataTableResource<Product>;
