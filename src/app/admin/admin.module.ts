@@ -1,9 +1,5 @@
-import { CustomFormsModule } from 'ng2-validation';
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { DataTableModule } from 'angular-4-data-table';
 import { AuthGuard } from 'shared/services/auth-guard.service';
 import { SharedModule } from 'shared/shared.module';
 
@@ -14,10 +10,6 @@ import { AdminAuthGuard } from './services/admin-auth-guard.service';
 
 @NgModule({
   imports: [
-    CommonModule,
-    DataTableModule,
-    CustomFormsModule,
-    FormsModule,
     SharedModule,
     RouterModule.forChild([
       {
