@@ -12,18 +12,14 @@ import { ShoppingModule } from 'app/shopping/shopping.module';
 import { environment } from './../environments/environment';
 import { AdminModule } from './admin/admin.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { NavbarComponent } from './navbar/navbar.component';
+import { LoginComponent } from './core/components/login/login.component';
+import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { ProductsComponent } from './shopping/components/products/products.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    NavbarComponent,
-    HomeComponent,
-    LoginComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +30,7 @@ import { ProductsComponent } from './shopping/components/products/products.compo
     DataTableModule,
     SharedModule,
     AdminModule,
+    CoreModule,
     ShoppingModule,
     RouterModule.forRoot([
       {
