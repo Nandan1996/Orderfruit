@@ -4,3 +4,7 @@
     border-radius: 50%;
     background-size: cover;
 }
+
+.card {
+    margin-bottom: 80px;
+}
